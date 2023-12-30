@@ -21,7 +21,6 @@ public class SecurityConfig {
 		return (web) -> web.ignoring().requestMatchers("/webjars/**", "/assets/**");
 	}
 
-	// @formatter:off
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http,
 			ClientRegistrationRepository clientRegistrationRepository) throws Exception {
