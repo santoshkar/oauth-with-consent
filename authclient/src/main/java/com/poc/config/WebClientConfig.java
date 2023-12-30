@@ -1,17 +1,8 @@
 
 package com.poc.config;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-
-import com.poc.authorization.DeviceCodeOAuth2AuthorizedClientProvider;
-
-/**
- * @author Joe Grandja
- * @author Steve Riesenberg
- * @since 0.0.1
- */
 @Configuration
 public class WebClientConfig {
 

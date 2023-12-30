@@ -1,18 +1,3 @@
-/*
- * Copyright 2020-2023 the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.poc.authorization;
 
 import java.util.Arrays;
@@ -35,17 +20,14 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestOperations;
 import org.springframework.web.client.RestTemplate;
 
-/**
- * @author Steve Riesenberg
- * @since 1.1
- */
-public final class OAuth2DeviceAccessTokenResponseClient implements OAuth2AccessTokenResponseClient<OAuth2DeviceGrantRequest> {
+public final class OAuth2DeviceAccessTokenResponseClient
+		implements OAuth2AccessTokenResponseClient<OAuth2DeviceGrantRequest> {
 
 	private RestOperations restOperations;
 
 	public OAuth2DeviceAccessTokenResponseClient() {
-		RestTemplate restTemplate = new RestTemplate(Arrays.asList(new FormHttpMessageConverter(),
-				new OAuth2AccessTokenResponseHttpMessageConverter()));
+		RestTemplate restTemplate = new RestTemplate(
+				Arrays.asList(new FormHttpMessageConverter(), new OAuth2AccessTokenResponseHttpMessageConverter()));
 		restTemplate.setErrorHandler(new OAuth2ErrorResponseErrorHandler());
 		this.restOperations = restTemplate;
 	}
@@ -59,17 +41,19 @@ public final class OAuth2DeviceAccessTokenResponseClient implements OAuth2Access
 		ClientRegistration clientRegistration = deviceGrantRequest.getClientRegistration();
 
 		HttpHeaders headers = new HttpHeaders();
+
 		/*
-		 * This sample demonstrates the use of a public client that does not
-		 * store credentials or authenticate with the authorization server.
-		 *
-		 * See DeviceClientAuthenticationProvider in the authorization server
-		 * sample for an example customization that allows public clients.
-		 *
-		 * For a confidential client, change the client-authentication-method
-		 * to client_secret_basic and set the client-secret to send the
-		 * OAuth 2.0 Token Request with a clientId/clientSecret.
+		 * This illustrates a public client without storing credentials or
+		 * authenticating with the authorization server.
+		 * 
+		 * Check DeviceClientAuthenticationProvider in the authorization server for
+		 * customizing public clients.
+		 * 
+		 * For a confidential client, use client_secret_basic as the
+		 * client-authentication-method and provide the client-secret to send the OAuth
+		 * 2.0 Token Request with clientId/clientSecret.
 		 */
+		
 		if (!clientRegistration.getClientAuthenticationMethod().equals(ClientAuthenticationMethod.NONE)) {
 			headers.setBasicAuth(clientRegistration.getClientId(), clientRegistration.getClientSecret());
 		}
@@ -79,19 +63,17 @@ public final class OAuth2DeviceAccessTokenResponseClient implements OAuth2Access
 		requestParameters.add(OAuth2ParameterNames.CLIENT_ID, clientRegistration.getClientId());
 		requestParameters.add(OAuth2ParameterNames.DEVICE_CODE, deviceGrantRequest.getDeviceCode());
 
-		// @formatter:off
-		RequestEntity<MultiValueMap<String, Object>> requestEntity =
-				RequestEntity.post(deviceGrantRequest.getClientRegistration().getProviderDetails().getTokenUri())
-						.headers(headers)
-						.body(requestParameters);
-		// @formatter:on
+		RequestEntity<MultiValueMap<String, Object>> requestEntity = RequestEntity
+				.post(deviceGrantRequest.getClientRegistration().getProviderDetails().getTokenUri()).headers(headers)
+				.body(requestParameters);
 
 		try {
 			return this.restOperations.exchange(requestEntity, OAuth2AccessTokenResponse.class).getBody();
 		} catch (RestClientException ex) {
 			OAuth2Error oauth2Error = new OAuth2Error("invalid_token_response",
 					"An error occurred while attempting to retrieve the OAuth 2.0 Access Token Response: "
-							+ ex.getMessage(), null);
+							+ ex.getMessage(),
+					null);
 			throw new OAuth2AuthorizationException(oauth2Error, ex);
 		}
 	}
