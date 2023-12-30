@@ -42,7 +42,7 @@ CREATE TABLE oauth2_authorization_consent (
     PRIMARY KEY (registered_client_id, principal_name)
 );
 
-CREATE TABLE oauth2_registered_client (
+CREATE TABLE Client (
     id varchar(100) NOT NULL,
     client_id varchar(100) NOT NULL,
     client_id_issued_at timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,
@@ -59,20 +59,44 @@ CREATE TABLE oauth2_registered_client (
     PRIMARY KEY (id)
 );
 
+insert into Client(
+	id,
+    client_id,
+    client_id_issued_at,
+    client_secret,
+    client_secret_expires_at,
+    client_name,
+    client_authentication_methods,
+    authorization_grant_types,
+    redirect_uris,
+    post_logout_redirect_uris,
+    scopes,
+    client_settings,
+    token_settings)
+values(
+    'abbc70f1-fb59-4b42-b1e4-c52fa0080beab',
+    'admin-client',
+    now(),
+    '{bcrypt}$2a$10$P.i3ft1EX59EGrTe6CwjruMtMH6FhHWFwr1HpnTZPuAXQsJlu2Ppq',
+    null,
+    '78822b49-8eed-4f33-bcda-d37a8877972f',
+    'client_secret_basic',
+    'refresh_token,client_credentials,authorization_code',
+    'http://127.0.0.1:8080/authorized,http://127.0.0.1:8080/login/oauth2/code/admin-client-oidc',
+    'http://127.0.0.1:8080/logged-out',
+    'openid,profile,message.read,message.write',
+    '{"@class":"java.util.Collections$UnmodifiableMap","settings.client.require-proof-key":false,"settings.client.require-authorization-consent":false}',
+    '{"@class":"java.util.Collections$UnmodifiableMap","settings.token.reuse-refresh-tokens":true,"settings.token.id-token-signature-algorithm":["org.springframework.security.oauth2.jose.jws.SignatureAlgorithm","RS256"],"settings.token.access-token-time-to-live":["java.time.Duration",300.000000000],"settings.token.access-token-format":{"@class":"org.springframework.security.oauth2.server.authorization.settings.OAuth2TokenFormat","value":"self-contained"},"settings.token.refresh-token-time-to-live":["java.time.Duration",3600.000000000],"settings.token.authorization-code-time-to-live":["java.time.Duration",300.000000000],"settings.token.device-code-time-to-live":["java.time.Duration",300.000000000]}'
+);
 
-//TODO: Add the below to the oauth2_registered_client TABLE
-UUID.randomUUID().toString())
-				.clientId("admin-client")
-				.clientSecret("{noop}secret")
-				.clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
-				.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
-				.authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
-				.authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
-				.redirectUri("http://127.0.0.1:8080/login/oauth2/code/admin-client-oidc")
-				.redirectUri("http://127.0.0.1:8080/authorized")
-				.postLogoutRedirectUri("http://127.0.0.1:8080/logged-out")
-				.scope(OidcScopes.OPENID)
-				.scope(OidcScopes.PROFILE)
-				.scope("message.read")
-				.scope("message.write")
-				.clientSettings(ClientSettings.builder().requireAuthorizationConsent(true).build())
+
+INSERT INTO users (username, password, account_non_expired, account_non_locked, credentials_non_expired, enabled)
+VALUES
+('Developer', '$2a$12$2yOChyhSuJm/naTBUjGZb.6d6mu1NsXS8XWRFousQfRTwzy0ZQtWW', true, true, true, true),
+('Admin', '$2a$12$2yOChyhSuJm/naTBUjGZb.6d6mu1NsXS8XWRFousQfRTwzy0ZQtWW', true, true, true, true),
+('User', '$2a$12$2yOChyhSuJm/naTBUjGZb.6d6mu1NsXS8XWRFousQfRTwzy0ZQtWW', true, true, true, true);
+
+
+INSERT INTO authorities VALUES (1,'ROLE_USER'),(2,'ROLE_ADMIN'), (3, 'ROLE_DEVELOPER');
+
+INSERT INTO users_authorities VALUES (1,1),(1,2),(1,3),(2,1),(2,2),(3,1);
