@@ -53,11 +53,11 @@ public class AuthorizationServerConfig {
 		return http.build();
 	}
 
-	@Bean
-	public JdbcOAuth2AuthorizationConsentService authorizationConsentService(JdbcTemplate jdbcTemplate,
-			RegisteredClientRepository registeredClientRepository) {
-		return new JdbcOAuth2AuthorizationConsentService(jdbcTemplate, registeredClientRepository);
-	}
+//	@Bean
+//	public JdbcOAuth2AuthorizationConsentService authorizationConsentService(JdbcTemplate jdbcTemplate,
+//			RegisteredClientRepository registeredClientRepository) {
+//		return new JdbcOAuth2AuthorizationConsentService(jdbcTemplate, registeredClientRepository);
+//	}
 
 	@Bean
 	public AuthorizationServerSettings authorizationServerSettings() {
