@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package sample.web;
+package com.poc.web;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -50,7 +50,7 @@ public class AuthorizationController {
 
 	@GetMapping(value = "/authorize", params = "grant_type=authorization_code")
 	public String authorizationCodeGrant(Model model,
-			@RegisteredOAuth2AuthorizedClient("admin-client-authorization-code")
+			@RegisteredOAuth2AuthorizedClient("messaging-client-authorization-code")
 					OAuth2AuthorizedClient authorizedClient) {
 
 		String[] messages = this.webClient
@@ -87,7 +87,7 @@ public class AuthorizationController {
 		String[] messages = this.webClient
 				.get()
 				.uri(this.messagesBaseUri)
-				.attributes(clientRegistrationId("admin-client-client-credentials"))
+				.attributes(clientRegistrationId("messaging-client-client-credentials"))
 				.retrieve()
 				.bodyToMono(String[].class)
 				.block();

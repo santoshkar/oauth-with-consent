@@ -23,15 +23,6 @@ spring:
             user-name-attribute: email
           github:
             user-name-attribute: login
-  datasource:
-    url: jdbc:postgresql://localhost:5432/security
-    username: postgres
-    password: root123
-  jpa:
-    generate-ddl: false
-    hibernate:
-      ddl-auto: update
-    show-sql: true
 
 logging:
   level:

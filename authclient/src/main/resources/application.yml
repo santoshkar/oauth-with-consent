@@ -15,36 +15,36 @@ spring:
     oauth2:
       client:
         registration:
-          admin-client-oidc:
+          messaging-client-oidc:
             provider: spring
-            client-id: admin-client
+            client-id: messaging-client
             client-secret: secret
             authorization-grant-type: authorization_code
             redirect-uri: "http://127.0.0.1:8080/login/oauth2/code/{registrationId}"
             scope: openid, profile
-            client-name: admin-client-oidc
-          admin-client-authorization-code:
+            client-name: messaging-client-oidc
+          messaging-client-authorization-code:
             provider: spring
-            client-id: admin-client
+            client-id: messaging-client
             client-secret: secret
             authorization-grant-type: authorization_code
             redirect-uri: "http://127.0.0.1:8080/authorized"
             scope: message.read,message.write
-            client-name: admin-client-authorization-code
-          admin-client-client-credentials:
+            client-name: messaging-client-authorization-code
+          messaging-client-client-credentials:
             provider: spring
-            client-id: admin-client
+            client-id: messaging-client
             client-secret: secret
             authorization-grant-type: client_credentials
             scope: message.read,message.write
-            client-name: admin-client-client-credentials
-#          admin-client-device-code:
-#            provider: spring
-#            client-id: device-admin-client
-#            client-authentication-method: none
-#            authorization-grant-type: urn:ietf:params:oauth:grant-type:device_code
-#            scope: message.read,message.write
-#            client-name: admin-client-device-code
+            client-name: messaging-client-client-credentials
+          messaging-client-device-code:
+            provider: spring
+            client-id: device-messaging-client
+            client-authentication-method: none
+            authorization-grant-type: urn:ietf:params:oauth:grant-type:device_code
+            scope: message.read,message.write
+            client-name: messaging-client-device-code
         provider:
           spring:
             issuer-uri: http://localhost:9000
