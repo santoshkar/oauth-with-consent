@@ -14,6 +14,9 @@ spring:
   security:
     oauth2:
       client:
+        provider:
+          spring:
+            issuer-uri: http://localhost:9000
         registration:
           admin-client-oidc:
             provider: spring
@@ -38,7 +41,5 @@ spring:
             authorization-grant-type: client_credentials
             scope: message.read,message.write
             client-name: admin-client-client-credentials
-        provider:
-          spring:
-            issuer-uri: http://localhost:9000
+
             

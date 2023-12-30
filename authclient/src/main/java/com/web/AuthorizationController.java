@@ -1,4 +1,4 @@
-package sample.web;
+package com.web;
 
 import org.springframework.security.oauth2.core.OAuth2Error;
 import org.springframework.security.oauth2.core.endpoint.OAuth2ParameterNames;
