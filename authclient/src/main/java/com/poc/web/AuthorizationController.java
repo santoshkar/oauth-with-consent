@@ -50,7 +50,7 @@ public class AuthorizationController {
 
 	@GetMapping(value = "/authorize", params = "grant_type=authorization_code")
 	public String authorizationCodeGrant(Model model,
-			@RegisteredOAuth2AuthorizedClient("messaging-client-authorization-code")
+			@RegisteredOAuth2AuthorizedClient("admin-client-authorization-code")
 					OAuth2AuthorizedClient authorizedClient) {
 
 		String[] messages = this.webClient
@@ -87,7 +87,7 @@ public class AuthorizationController {
 		String[] messages = this.webClient
 				.get()
 				.uri(this.messagesBaseUri)
-				.attributes(clientRegistrationId("messaging-client-client-credentials"))
+				.attributes(clientRegistrationId("admin-client-client-credentials"))
 				.retrieve()
 				.bodyToMono(String[].class)
 				.block();

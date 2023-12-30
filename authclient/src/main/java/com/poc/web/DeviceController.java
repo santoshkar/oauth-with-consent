@@ -85,7 +85,7 @@ public class DeviceController {
 		// @formatter:off
 		ClientRegistration clientRegistration =
 				this.clientRegistrationRepository.findByRegistrationId(
-						"messaging-client-device-code");
+						"admin-client-device-code");
 		// @formatter:on
 
 		MultiValueMap<String, String> requestParameters = new LinkedMultiValueMap<>();
@@ -143,7 +143,7 @@ public class DeviceController {
 	 */
 	@PostMapping("/device_authorize")
 	public ResponseEntity<Void> poll(@RequestParam(OAuth2ParameterNames.DEVICE_CODE) String deviceCode,
-			@RegisteredOAuth2AuthorizedClient("messaging-client-device-code")
+			@RegisteredOAuth2AuthorizedClient("admin-client-device-code")
 					OAuth2AuthorizedClient authorizedClient) {
 
 		/*
@@ -175,7 +175,7 @@ public class DeviceController {
 
 	@GetMapping("/device_authorized")
 	public String authorized(Model model,
-			@RegisteredOAuth2AuthorizedClient("messaging-client-device-code")
+			@RegisteredOAuth2AuthorizedClient("admin-client-device-code")
 					OAuth2AuthorizedClient authorizedClient) {
 
 		String[] messages = this.webClient.get()
