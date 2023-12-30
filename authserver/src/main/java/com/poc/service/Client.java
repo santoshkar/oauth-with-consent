@@ -2,6 +2,7 @@ package com.poc.service;
 
 import java.time.Instant;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
@@ -18,20 +19,28 @@ public class Client {
 	private String id;
 
 	private String clientId;
-
-	private String clientName;
-
+	
+	private Instant clientIdIssuedAt;
+	
 	private String clientSecret;
 
-	private Instant clientIdIssuedAt;
-
 	private Instant clientSecretExpiresAt;
+	
+	private String clientName;
 
 	private String clientAuthenticationMethods;
 
 	private String authorizationGrantTypes;
 
 	private String redirectUris;
+	
+	private String postLogoutRedirectUris;
 
 	private String scopes;
+	
+	@Column(length = 2000)
+	private String clientSettings;
+	
+	@Column(length = 2000)
+	private String tokenSettings;
 }

@@ -19,16 +19,13 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import lombok.RequiredArgsConstructor;
+
 @Controller
+@RequiredArgsConstructor
 public class AuthorizationConsentController {
 	private final RegisteredClientRepository registeredClientRepository;
 	private final OAuth2AuthorizationConsentService authorizationConsentService;
-	
-	public AuthorizationConsentController(RegisteredClientRepository registeredClientRepository,
-			OAuth2AuthorizationConsentService authorizationConsentService) {
-		this.registeredClientRepository = registeredClientRepository;
-		this.authorizationConsentService = authorizationConsentService;
-	}
 
 	@GetMapping(value = "/oauth2/consent")
 	public String consent(Principal principal, Model model,

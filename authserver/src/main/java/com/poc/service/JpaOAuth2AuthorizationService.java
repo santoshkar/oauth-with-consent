@@ -1,3 +1,5 @@
+//Step2: authorizationService
+
 package com.poc.service;
 
 import java.time.Instant;
@@ -6,9 +8,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Consumer;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.dao.DataRetrievalFailureException;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.jackson2.SecurityJackson2Modules;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.oauth2.core.OAuth2AccessToken;
@@ -16,7 +16,6 @@ import org.springframework.security.oauth2.core.OAuth2RefreshToken;
 import org.springframework.security.oauth2.core.OAuth2Token;
 import org.springframework.security.oauth2.core.endpoint.OAuth2ParameterNames;
 import org.springframework.security.oauth2.core.oidc.OidcIdToken;
-import org.springframework.security.oauth2.server.authorization.JdbcOAuth2AuthorizationService;
 import org.springframework.security.oauth2.server.authorization.OAuth2Authorization;
 import org.springframework.security.oauth2.server.authorization.OAuth2AuthorizationCode;
 import org.springframework.security.oauth2.server.authorization.OAuth2AuthorizationService;
