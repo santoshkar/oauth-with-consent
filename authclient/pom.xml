@@ -9,10 +9,10 @@
 		<version>3.2.1</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.poc</groupId>
-	<artifactId>authclient</artifactId>
+	<groupId>com.aads.authclient</groupId>
+	<artifactId>AuthClient</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>authclient</name>
+	<name>AuthClient</name>
 	<description>MultipleDB with Conditional</description>
 	<properties>
 		<java.version>17</java.version>

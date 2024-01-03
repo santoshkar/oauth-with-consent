@@ -8,11 +8,11 @@
 		<version>3.2.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.poc</groupId>
-	<artifactId>authserver</artifactId>
+	<groupId>com.aads.authserver</groupId>
+	<artifactId>AuthServer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>authserver</name>
-	<description>MultipleDB with Conditional</description>
+	<name>AuthServer</name>
+	<description>Auth Server</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
