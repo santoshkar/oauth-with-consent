@@ -1,0 +1,60 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5455/patientservice
+    username: postgres
+    password: root123
+    
+  jpa:
+    generate-ddl: false
+  security:
+    oauth2:
+#      client:
+#        provider:
+#           security:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9000
+    user:
+      name: admin
+      password: admin
+#        opaquetoken:
+#          introspection-uri: http://localhost:9000/oauth2/introspect
+#          client-id: admin-client
+#          client-secret: secret
+server:
+  port: 8081
+  shutdown: graceful
+  servlet:
+    context-path: /api
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - "*"
+  endpoint:
+    shutdown:
+      enabled: false
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
